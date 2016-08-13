@@ -46,5 +46,6 @@
     <module>test</module>
     <module>02-simple-logging</module>
     <module>03-cost-of-reflexion</module>
+    <module>04-modelmapper</module>
 	</modules>
 </project>
