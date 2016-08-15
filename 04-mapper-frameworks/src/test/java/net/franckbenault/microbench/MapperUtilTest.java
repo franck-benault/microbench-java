@@ -1,6 +1,7 @@
 package net.franckbenault.microbench;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import org.junit.Ignore;
 
 import org.junit.Test;
 
@@ -57,6 +58,31 @@ public class MapperUtilTest {
 		
 		order = getOrderNull();
 		orderDTO =MapperUtil.mapWithModelMapper(order);
+		checkMapping(order, orderDTO);		
+	}
+	
+	@Test
+	public void testMapWithModelMapperOptimized() {
+		
+		Order order = getOrder();
+		OrderDTO orderDTO =MapperUtil.mapWithModelMapperOptimized(order);
+		checkMapping(order, orderDTO);
+		
+		order = getOrderNull();
+		orderDTO =MapperUtil.mapWithModelMapperOptimized(order);
+		checkMapping(order, orderDTO);		
+	}
+	
+	@Test
+	@Ignore
+	public void testMapWithJMapper() {
+		
+		Order order = getOrder();
+		OrderDTO orderDTO =MapperUtil.mapWithDozer(order);
+		checkMapping(order, orderDTO);
+		
+		order = getOrderNull();
+		orderDTO =MapperUtil.mapWithDozer(order);
 		checkMapping(order, orderDTO);		
 	}
 
