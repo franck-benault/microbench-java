@@ -1,7 +1,6 @@
 package net.franckbenault.microbench;
 
 import static org.junit.Assert.assertEquals;
-import org.junit.Ignore;
 
 import org.junit.Test;
 
@@ -86,7 +85,6 @@ public class MapperUtilTest {
 	}
 	
 	@Test
-	@Ignore
 	public void testMapWithJMapper() {
 		
 		Order order = getOrder();

@@ -72,6 +72,15 @@ public class MyBenchmark {
 	  }
 	  
 	  @Benchmark
+	  public void simpleMapWithDozer(Blackhole bh) {
+		  Order order = getOrder();
+		  OrderDTO dto = MapperUtil.mapWithDozer(order);
+		  
+		  bh.consume(dto);
+		  
+	  }
+	  
+	  @Benchmark
 	  public void simpleMapManual(Blackhole bh) {
 		  Order order = getOrder();
 		  OrderDTO dto = MapperUtil.mapManual(order);
@@ -103,6 +112,20 @@ public class MyBenchmark {
 		  
 		  order = getOrderNull();
 		  OrderDTO dto2 = MapperUtil.mapWithModelMapperOptimized(order);
+		  
+		  bh.consume(dto2);
+		  
+	  }
+	  
+	  @Benchmark
+	  public void fullMapWithDozer(Blackhole bh) {
+		  Order order = getOrder();
+		  OrderDTO dto = MapperUtil.mapWithDozer(order);
+		  
+		  bh.consume(dto);
+		  
+		  order = getOrderNull();
+		  OrderDTO dto2 = MapperUtil.mapWithDozer(order);
 		  
 		  bh.consume(dto2);
 		  

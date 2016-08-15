@@ -16,16 +16,20 @@
         <a>customer.name.firstName</a>
         <b>customerFirstName</b>
       </field>
-  </mapping> 
-
-  <mapping>
-    <class-a>net.franckbenault.microbench.source.Address</class-a>
-    <class-b>net.franckbenault.microbench.destination.OrderDTO</class-b>
       <field>
-        <a>city</a>
+        <a>customer.name.lastName</a>
+        <b>customerLastName</b>
+      </field>
+      <field>
+        <a>billingAddress.city</a>
         <b>billingCity</b>
       </field>
+      <field>
+        <a>billingAddress.street</a>
+        <b>billingStreet</b>
+      </field>
   </mapping> 
+
             
                    
 </mappings>  

@@ -15,8 +15,9 @@ import net.franckbenault.microbench.source.Order;
 
 public class MapperUtil {
 	
-	private static ModelMapper modelMapper = new ModelMapper();
+	private static final ModelMapper modelMapper = new ModelMapper();
 	private static final Logger logger = LoggerFactory.getLogger(MapperUtil.class);
+	private static DozerBeanMapper dozerMapper;
 
 
 	public static  OrderDTO mapWithModelMapper(Order order) {
@@ -55,6 +56,20 @@ public class MapperUtil {
 		mapper.setMappingFiles(myMappingFiles);
 		OrderDTO orderDTO =   
 		    mapper.map(order, OrderDTO.class,"order");
+		
+		return orderDTO;
+	}
+	
+	public static OrderDTO mapWithDozerOptimized(Order order) {
+		if(dozerMapper==null) {
+			List<String> myMappingFiles = new ArrayList<>();
+			myMappingFiles.add("dozerMapping.xml");
+		
+			DozerBeanMapper dozerMapper = new DozerBeanMapper();
+			dozerMapper.setMappingFiles(myMappingFiles);
+		}
+		OrderDTO orderDTO =   
+				dozerMapper.map(order, OrderDTO.class,"order");
 		
 		return orderDTO;
 	}
