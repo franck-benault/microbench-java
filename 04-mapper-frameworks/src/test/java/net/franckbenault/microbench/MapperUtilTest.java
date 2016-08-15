@@ -74,6 +74,18 @@ public class MapperUtilTest {
 	}
 	
 	@Test
+	public void testMapWithModelMapperWithStopWatch() {
+		
+		Order order = getOrder();
+		OrderDTO orderDTO =MapperUtil.mapWithModelMapperWithStopWatch(order);
+		checkMapping(order, orderDTO);
+		
+		order = getOrderNull();
+		orderDTO =MapperUtil.mapWithModelMapperWithStopWatch(order);
+		checkMapping(order, orderDTO);		
+	}
+	
+	@Test
 	@Ignore
 	public void testMapWithJMapper() {
 		
