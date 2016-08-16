@@ -12,33 +12,33 @@ import net.franckbenault.microbench.source.Name;
 import net.franckbenault.microbench.source.Order;
 
 public class MyBenchmark {
-	private Address getAddress() {
+	private Address getAddress(int i) {
 		Address address = new Address();
-		address.setCity("city");
-		address.setStreet("street");
+		address.setCity("city"+i);
+		address.setStreet("street"+i);
 		
 		return address;
 	}
 	
-	private Customer getCustomer() {
+	private Customer getCustomer(int i) {
 		Customer customer = new Customer();
-		customer.setName(getName());
+		customer.setName(getName(i));
 		
 		return customer;
 	}
 	
-	private Name getName() {
+	private Name getName(int i) {
 		Name name = new Name();
-		name.setFirstName("firstName");
-		name.setLastName("lastName");
+		name.setFirstName("firstName"+i);
+		name.setLastName("lastName"+i);
 		
 		return name;
 	}
 	
-	private Order getOrder() {
+	private Order getOrder(int i) {
 		Order order = new Order();
-		order.setBillingAddress(getAddress());
-		order.setCustomer(getCustomer());
+		order.setBillingAddress(getAddress(i));
+		order.setCustomer(getCustomer(i));
 		
 		return order;
 	}
@@ -49,52 +49,31 @@ public class MyBenchmark {
 	}
 	
 	  @Benchmark
-	  public void empty() {
+	  public void nothing() {
 
 	  }
-	  
+	  	  
 	  @Benchmark
-	  public void simpleMapWithModelMapper(Blackhole bh) {
-		  Order order = getOrder();
-		  OrderDTO dto = MapperUtil.mapWithModelMapper(order);
+	  public void fillInput(Blackhole bh) {
+		  Order order;
+		  for(int i=0; i<10; i++) {
+			  order = getOrder(i);		  
+			  bh.consume(order);
+		  }
+		  order = getOrderNull();
 		  
-		  bh.consume(dto);
-		  
+		  bh.consume(order);
 	  }
 	  
-	  @Benchmark
-	  public void simpleMapWithModelMapperOptimized(Blackhole bh) {
-		  Order order = getOrder();
-		  OrderDTO dto = MapperUtil.mapWithModelMapperOptimized(order);
-		  
-		  bh.consume(dto);
-		  
-	  }
-	  
-	  @Benchmark
-	  public void simpleMapWithDozer(Blackhole bh) {
-		  Order order = getOrder();
-		  OrderDTO dto = MapperUtil.mapWithDozer(order);
-		  
-		  bh.consume(dto);
-		  
-	  }
-	  
-	  @Benchmark
-	  public void simpleMapManual(Blackhole bh) {
-		  Order order = getOrder();
-		  OrderDTO dto = MapperUtil.mapManual(order);
-		  
-		  bh.consume(dto);
-
-	  }
-
 	  @Benchmark
 	  public void fullMapWithModelMapper(Blackhole bh) {
-		  Order order = getOrder();
-		  OrderDTO dto = MapperUtil.mapWithModelMapper(order);
+		  Order order;
+		  for(int i=0; i<10; i++) {
+			  order = getOrder(i);
+			  OrderDTO dto = MapperUtil.mapWithModelMapper(order);
 		  
-		  bh.consume(dto);
+			  bh.consume(dto);
+		  }
 		  
 		  order = getOrderNull();
 		  OrderDTO dto2 = MapperUtil.mapWithModelMapper(order);
@@ -105,24 +84,29 @@ public class MyBenchmark {
 	  
 	  @Benchmark
 	  public void fullMapWithModelMapperOptimized(Blackhole bh) {
-		  Order order = getOrder();
-		  OrderDTO dto = MapperUtil.mapWithModelMapperOptimized(order);
-		  
-		  bh.consume(dto);
-		  
+		  Order order;
+		  for(int i=0; i<10; i++) {
+			  order = getOrder(i);		  
+			  
+			  OrderDTO dto = MapperUtil.mapWithModelMapperOptimized(order);
+			  
+			  bh.consume(dto);
+		  }
 		  order = getOrderNull();
-		  OrderDTO dto2 = MapperUtil.mapWithModelMapperOptimized(order);
-		  
-		  bh.consume(dto2);
+		  OrderDTO dto = MapperUtil.mapWithModelMapperOptimized(order);
+		  bh.consume(dto);
 		  
 	  }
 	  
 	  @Benchmark
 	  public void fullMapWithDozer(Blackhole bh) {
-		  Order order = getOrder();
-		  OrderDTO dto = MapperUtil.mapWithDozer(order);
+		  Order order;
+		  for(int i=0; i<10; i++) {
+			  order = getOrder(i);
+			  OrderDTO dto = MapperUtil.mapWithDozer(order);
 		  
-		  bh.consume(dto);
+			  bh.consume(dto);
+		  }
 		  
 		  order = getOrderNull();
 		  OrderDTO dto2 = MapperUtil.mapWithDozer(order);
@@ -131,13 +115,34 @@ public class MyBenchmark {
 		  
 	  }
 	  
+	  @Benchmark
+	  public void fullMapWithDozerOptimized(Blackhole bh) {
+		  Order order;
+		  for(int i=0; i<10; i++) {
+			  order = getOrder(i);
+			  OrderDTO dto = MapperUtil.mapWithDozerOptimized(order);
+		  
+			  bh.consume(dto);
+		  }
+		  
+		  order = getOrderNull();
+		  OrderDTO dto2 = MapperUtil.mapWithDozerOptimized(order);
+		  
+		  bh.consume(dto2);
+		  
+	  }
+	  
+	  
 	  
 	  @Benchmark
 	  public void fullMapManual(Blackhole bh) {
-		  Order order = getOrder();
-		  OrderDTO dto = MapperUtil.mapManual(order);
+		  Order order;
+		  for(int i=0; i<10; i++) {
+			  order = getOrder(i);
+			  OrderDTO dto = MapperUtil.mapManual(order);
 		  
-		  bh.consume(dto);
+			  bh.consume(dto);
+		  }
 		  
 		  order = getOrderNull();
 		  OrderDTO dto2 = MapperUtil.mapManual(order);

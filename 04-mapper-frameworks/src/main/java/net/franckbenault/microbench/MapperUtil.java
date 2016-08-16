@@ -65,7 +65,7 @@ public class MapperUtil {
 			List<String> myMappingFiles = new ArrayList<>();
 			myMappingFiles.add("dozerMapping.xml");
 		
-			DozerBeanMapper dozerMapper = new DozerBeanMapper();
+			dozerMapper = new DozerBeanMapper();
 			dozerMapper.setMappingFiles(myMappingFiles);
 		}
 		OrderDTO orderDTO =   
