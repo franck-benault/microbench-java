@@ -2,6 +2,7 @@ package net.franckbenault.microbench;
 
 import static org.junit.Assert.assertEquals;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Test;
 
 import net.franckbenault.microbench.destination.OrderDTO;
@@ -14,8 +15,8 @@ public class MapperUtilTest {
 	
 	private Address getAddress() {
 		Address address = new Address();
-		address.setCity("city");
-		address.setStreet("street");
+		address.setCity(RandomStringUtils.random(2));
+		address.setStreet(String.format("street%d",2));
 		
 		return address;
 	}
@@ -122,7 +123,8 @@ public class MapperUtilTest {
 	}
 	
 	private void checkMapping(Order order, OrderDTO orderDTO) {
-		
+		System.out.println("order="+order);
+		System.out.println("orderDTO="+orderDTO);
 		
 		if(order.getCustomer()!=null && order.getCustomer().getName()!=null) {
 			assertEquals(order.getCustomer().getName().getFirstName(), orderDTO.getCustomerFirstName());

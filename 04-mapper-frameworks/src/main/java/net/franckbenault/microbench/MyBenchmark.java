@@ -1,7 +1,5 @@
 package net.franckbenault.microbench;
 
-
-
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.infra.Blackhole;
 
@@ -14,8 +12,8 @@ import net.franckbenault.microbench.source.Order;
 public class MyBenchmark {
 	private Address getAddress(int i) {
 		Address address = new Address();
-		address.setCity("city"+i);
-		address.setStreet("street"+i);
+		address.setCity("City"+i);
+		address.setStreet("Street"+i);
 		
 		return address;
 	}
