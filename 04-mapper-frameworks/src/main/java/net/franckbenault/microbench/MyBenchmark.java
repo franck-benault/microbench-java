@@ -4,6 +4,7 @@ import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.infra.Blackhole;
 
 import net.franckbenault.microbench.destination.OrderDTO;
+import net.franckbenault.microbench.mapper.MapperWithMapStruct;
 import net.franckbenault.microbench.source.Address;
 import net.franckbenault.microbench.source.Customer;
 import net.franckbenault.microbench.source.Name;
@@ -148,5 +149,19 @@ public class MyBenchmark {
 		  bh.consume(dto2);
 	  }
 	  
-	  
+	  @Benchmark
+	  public void fullMapWithMapStruct(Blackhole bh) {
+		  Order order;
+		  for(int i=0; i<10; i++) {
+			  order = getOrder(i);
+			  OrderDTO dto = MapperWithMapStruct.INSTANCE.map(order);
+		  
+			  bh.consume(dto);
+		  }
+		  
+		  order = getOrderNull();
+		  OrderDTO dto2 = MapperWithMapStruct.INSTANCE.map(order);
+		  
+		  bh.consume(dto2);
+	  }
 }
