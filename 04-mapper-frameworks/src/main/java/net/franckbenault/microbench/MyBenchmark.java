@@ -3,8 +3,10 @@ package net.franckbenault.microbench;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.infra.Blackhole;
 
+import fr.xebia.extras.selma.Selma;
 import net.franckbenault.microbench.destination.OrderDTO;
 import net.franckbenault.microbench.mapper.MapperWithMapStruct;
+import net.franckbenault.microbench.mapper.MapperWithSelma;
 import net.franckbenault.microbench.source.Address;
 import net.franckbenault.microbench.source.Customer;
 import net.franckbenault.microbench.source.Name;
@@ -161,6 +163,24 @@ public class MyBenchmark {
 		  
 		  order = getOrderNull();
 		  OrderDTO dto2 = MapperWithMapStruct.INSTANCE.map(order);
+		  
+		  bh.consume(dto2);
+	  }
+	  
+	  @Benchmark
+	  public void fullMapWithSelma(Blackhole bh) {
+		  MapperWithSelma mapper = Selma.builder(MapperWithSelma.class).build();
+		  
+		  Order order;
+		  for(int i=0; i<10; i++) {
+			  order = getOrder(i);
+			  OrderDTO dto = mapper.asOrderDTO(order);
+		  
+			  bh.consume(dto);
+		  }
+		  
+		  order = getOrderNull();
+		  OrderDTO dto2 = mapper.asOrderDTO(order);
 		  
 		  bh.consume(dto2);
 	  }
