@@ -7,6 +7,8 @@ import fr.xebia.extras.selma.Selma;
 import net.franckbenault.microbench.destination.OrderDTO;
 import net.franckbenault.microbench.mapper.MapperWithHand;
 import net.franckbenault.microbench.mapper.MapperWithMapStruct;
+import net.franckbenault.microbench.mapper.MapperWithModelMapper;
+import net.franckbenault.microbench.mapper.MapperWithModelMapperOptimized;
 import net.franckbenault.microbench.mapper.MapperWithSelma;
 import net.franckbenault.microbench.source.Address;
 import net.franckbenault.microbench.source.Customer;
@@ -67,36 +69,49 @@ public class MyBenchmark {
 		  bh.consume(order);
 	  }
 	  
-	  //@Benchmark
+	  @Benchmark
 	  public void fullMapWithModelMapper(Blackhole bh) {
+		  MapperWithModelMapper mapper = new MapperWithModelMapper();
+		  
 		  Order order;
 		  for(int i=0; i<10; i++) {
 			  order = getOrder(i);
-			  OrderDTO dto = MapperUtil.mapWithModelMapper(order);
-		  
+			  OrderDTO dto = mapper.asOrderDTO(order);
+			  Order order2 = mapper.asOrder(dto);
+			  
 			  bh.consume(dto);
+			  bh.consume(order2);
 		  }
 		  
 		  order = getOrderNull();
-		  OrderDTO dto2 = MapperUtil.mapWithModelMapper(order);
+		  OrderDTO dto2 = mapper.asOrderDTO(order);
+		  Order order2 = mapper.asOrder(dto2);
 		  
 		  bh.consume(dto2);
+		  bh.consume(order2);
 		  
 	  }
 	  
-	  //@Benchmark
+	  @Benchmark
 	  public void fullMapWithModelMapperOptimized(Blackhole bh) {
+		  MapperWithModelMapperOptimized mapper = new MapperWithModelMapperOptimized();
+		  
 		  Order order;
 		  for(int i=0; i<10; i++) {
-			  order = getOrder(i);		  
-			  
-			  OrderDTO dto = MapperUtil.mapWithModelMapperOptimized(order);
+			  order = getOrder(i);
+			  OrderDTO dto = mapper.asOrderDTO(order);
+			  Order order2 = mapper.asOrder(dto);
 			  
 			  bh.consume(dto);
+			  bh.consume(order2);
 		  }
+		  
 		  order = getOrderNull();
-		  OrderDTO dto = MapperUtil.mapWithModelMapperOptimized(order);
-		  bh.consume(dto);
+		  OrderDTO dto2 = mapper.asOrderDTO(order);
+		  Order order2 = mapper.asOrder(dto2);
+		  
+		  bh.consume(dto2);
+		  bh.consume(order2);
 		  
 	  }
 	  

@@ -15,17 +15,11 @@ import net.franckbenault.microbench.source.Order;
 
 public class MapperUtil {
 	
-	private static final ModelMapper modelMapper = new ModelMapper();
 	private static final Logger logger = LoggerFactory.getLogger(MapperUtil.class);
 	private static DozerBeanMapper dozerMapper;
 
 
-	public static  OrderDTO mapWithModelMapper(Order order) {
 
-		ModelMapper modelMapper = new ModelMapper();
-		OrderDTO orderDTO = modelMapper.map(order, OrderDTO.class);
-		return orderDTO;
-	}
 	
 	public static  OrderDTO mapWithModelMapperWithStopWatch(Order order) {
 
@@ -41,11 +35,7 @@ public class MapperUtil {
 		return orderDTO;
 	}
 	
-	public static  OrderDTO mapWithModelMapperOptimized(Order order) {
-		
-		OrderDTO orderDTO = modelMapper.map(order, OrderDTO.class);
-		return orderDTO;
-	}
+
 	
 	public static OrderDTO mapWithDozer(Order order) {
 		
@@ -72,24 +62,5 @@ public class MapperUtil {
 				dozerMapper.map(order, OrderDTO.class,"order");
 		
 		return orderDTO;
-	}
-
-	public static OrderDTO mapManual(Order order) {
-
-		if (order == null) {
-			return null;
-		} else {
-
-			OrderDTO orderDTO = new OrderDTO();
-			if(order.getBillingAddress()!=null) {
-				orderDTO.setBillingCity(order.getBillingAddress().getCity());
-				orderDTO.setBillingStreet(order.getBillingAddress().getStreet());
-			}
-			if(order.getCustomer()!=null && order.getCustomer().getName()!=null) {
-				orderDTO.setCustomerFirstName(order.getCustomer().getName().getFirstName());
-				orderDTO.setCustomerLastName(order.getCustomer().getName().getLastName());
-			}
-			return orderDTO;
-		}
 	}
 }

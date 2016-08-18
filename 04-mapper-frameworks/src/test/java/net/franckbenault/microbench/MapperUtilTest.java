@@ -49,29 +49,8 @@ public class MapperUtilTest {
 		return order;
 	}
 
-	@Test
-	public void testMapWithModelMapper() {
-		
-		Order order = getOrder();
-		OrderDTO orderDTO =MapperUtil.mapWithModelMapper(order);
-		checkMapping(order, orderDTO);
-		
-		order = getOrderNull();
-		orderDTO =MapperUtil.mapWithModelMapper(order);
-		checkMapping(order, orderDTO);		
-	}
 	
-	@Test
-	public void testMapWithModelMapperOptimized() {
-		
-		Order order = getOrder();
-		OrderDTO orderDTO =MapperUtil.mapWithModelMapperOptimized(order);
-		checkMapping(order, orderDTO);
-		
-		order = getOrderNull();
-		orderDTO =MapperUtil.mapWithModelMapperOptimized(order);
-		checkMapping(order, orderDTO);		
-	}
+	
 	
 	@Test
 	public void testMapWithModelMapperWithStopWatch() {
@@ -109,18 +88,7 @@ public class MapperUtilTest {
 		checkMapping(order, orderDTO);		
 	}
 
-	@Test
-	public void testMapManual() {
-		Order order = getOrder();
-		OrderDTO orderDTO =MapperUtil.mapManual(order);
-		checkMapping(order, orderDTO);
-		
-		
-		order = getOrderNull();
-		orderDTO =MapperUtil.mapManual(order);
-		checkMapping(order, orderDTO);	
 
-	}
 	
 	private void checkMapping(Order order, OrderDTO orderDTO) {
 		System.out.println("order="+order);
