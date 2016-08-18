@@ -43,6 +43,16 @@ public class TestUtils {
 		return order;
 	}
 	
+	public static OrderDTO getOrderDTO() {
+		OrderDTO orderDTO = new OrderDTO();
+		orderDTO.setBillingCity("billingCity");
+		orderDTO.setBillingStreet("billingStreet");
+		orderDTO.setCustomerFirstName("customerFirstName");
+		orderDTO.setCustomerLastName("customerLastName");
+		
+		return orderDTO;
+	}
+	
 	public static Order getOrderNull() {
 		Order order = new Order();
 		return order;

@@ -5,6 +5,7 @@ import org.openjdk.jmh.infra.Blackhole;
 
 import fr.xebia.extras.selma.Selma;
 import net.franckbenault.microbench.destination.OrderDTO;
+import net.franckbenault.microbench.mapper.MapperWithHand;
 import net.franckbenault.microbench.mapper.MapperWithMapStruct;
 import net.franckbenault.microbench.mapper.MapperWithSelma;
 import net.franckbenault.microbench.source.Address;
@@ -66,7 +67,7 @@ public class MyBenchmark {
 		  bh.consume(order);
 	  }
 	  
-	  @Benchmark
+	  //@Benchmark
 	  public void fullMapWithModelMapper(Blackhole bh) {
 		  Order order;
 		  for(int i=0; i<10; i++) {
@@ -83,7 +84,7 @@ public class MyBenchmark {
 		  
 	  }
 	  
-	  @Benchmark
+	  //@Benchmark
 	  public void fullMapWithModelMapperOptimized(Blackhole bh) {
 		  Order order;
 		  for(int i=0; i<10; i++) {
@@ -99,7 +100,7 @@ public class MyBenchmark {
 		  
 	  }
 	  
-	  @Benchmark
+	  //@Benchmark
 	  public void fullMapWithDozer(Blackhole bh) {
 		  Order order;
 		  for(int i=0; i<10; i++) {
@@ -116,7 +117,7 @@ public class MyBenchmark {
 		  
 	  }
 	  
-	  @Benchmark
+	  //@Benchmark
 	  public void fullMapWithDozerOptimized(Blackhole bh) {
 		  Order order;
 		  for(int i=0; i<10; i++) {
@@ -136,22 +137,28 @@ public class MyBenchmark {
 	  
 	  
 	  @Benchmark
-	  public void fullMapManual(Blackhole bh) {
+	  public void fullMapWithHand(Blackhole bh) {
+		  MapperWithHand mapper = new MapperWithHand();
+		  
 		  Order order;
 		  for(int i=0; i<10; i++) {
 			  order = getOrder(i);
-			  OrderDTO dto = MapperUtil.mapManual(order);
-		  
+			  OrderDTO dto = mapper.asOrderDTO(order);
+			  Order order2 = mapper.asOrder(dto);
+			  
 			  bh.consume(dto);
+			  bh.consume(order2);
 		  }
 		  
 		  order = getOrderNull();
-		  OrderDTO dto2 = MapperUtil.mapManual(order);
+		  OrderDTO dto2 = mapper.asOrderDTO(order);
+		  Order order2 = mapper.asOrder(dto2);
 		  
 		  bh.consume(dto2);
+		  bh.consume(order2);
 	  }
 	  
-	  @Benchmark
+	  //@Benchmark
 	  public void fullMapWithMapStruct(Blackhole bh) {
 		  Order order;
 		  for(int i=0; i<10; i++) {
@@ -175,13 +182,17 @@ public class MyBenchmark {
 		  for(int i=0; i<10; i++) {
 			  order = getOrder(i);
 			  OrderDTO dto = mapper.asOrderDTO(order);
-		  
+			  Order order2 = mapper.asOrder(dto);
+			  
 			  bh.consume(dto);
+			  bh.consume(order2);
 		  }
 		  
 		  order = getOrderNull();
 		  OrderDTO dto2 = mapper.asOrderDTO(order);
+		  Order order2 = mapper.asOrder(dto2);
 		  
 		  bh.consume(dto2);
+		  bh.consume(order2);
 	  }
 }

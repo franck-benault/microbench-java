@@ -17,4 +17,6 @@ import net.franckbenault.microbench.source.Order;
 public interface MapperWithSelma {
 
     OrderDTO asOrderDTO(Order order);
+    
+    Order asOrder(OrderDTO orderDto);
 }
