@@ -37,7 +37,7 @@ public class TestUtils {
 	
 	public static Order getOrder() {
 		Order order = new Order();
-		order.setBilling(getAddress());
+		order.setBillingAddress(getAddress());
 		order.setCustomer(getCustomer());
 		
 		return order;
@@ -66,9 +66,9 @@ public class TestUtils {
 			assertEquals(order.getCustomer().getName().getFirstName(), orderDTO.getCustomerFirstName());
 			assertEquals(order.getCustomer().getName().getLastName(), orderDTO.getCustomerLastName());
 		}
-		if(order.getBilling()!=null) {
-			assertEquals(order.getBilling().getStreet(), orderDTO.getBillingStreet());
-			assertEquals(order.getBilling().getCity(), orderDTO.getBillingCity());
+		if(order.getBillingAddress()!=null) {
+			assertEquals(order.getBillingAddress().getStreet(), orderDTO.getBillingStreet());
+			assertEquals(order.getBillingAddress().getCity(), orderDTO.getBillingCity());
 		}
 		checkMapping(orderDTO, order);
 	}
@@ -85,11 +85,11 @@ public class TestUtils {
 		}
 		
 		if(orderDTO.getBillingCity()!=null) {
-			assertEquals(order.getBilling().getCity(), orderDTO.getBillingCity());
+			assertEquals(order.getBillingAddress().getCity(), orderDTO.getBillingCity());
 		}
 		
 		if(orderDTO.getBillingStreet()!=null) {
-			assertEquals(order.getBilling().getStreet(), 
+			assertEquals(order.getBillingAddress().getStreet(), 
 					orderDTO.getBillingStreet());
 		}
 	}

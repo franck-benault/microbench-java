@@ -38,7 +38,7 @@ public class MapperUtilTest {
 	
 	private Order getOrder() {
 		Order order = new Order();
-		order.setBilling(getAddress());
+		order.setBillingAddress(getAddress());
 		order.setCustomer(getCustomer());
 		
 		return order;
@@ -98,9 +98,9 @@ public class MapperUtilTest {
 			assertEquals(order.getCustomer().getName().getFirstName(), orderDTO.getCustomerFirstName());
 			assertEquals(order.getCustomer().getName().getLastName(), orderDTO.getCustomerLastName());
 		}
-		if(order.getBilling()!=null) {
-			assertEquals(order.getBilling().getStreet(), orderDTO.getBillingStreet());
-			assertEquals(order.getBilling().getCity(), orderDTO.getBillingCity());
+		if(order.getBillingAddress()!=null) {
+			assertEquals(order.getBillingAddress().getStreet(), orderDTO.getBillingStreet());
+			assertEquals(order.getBillingAddress().getCity(), orderDTO.getBillingCity());
 		}
 	}
 

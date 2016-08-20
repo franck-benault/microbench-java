@@ -14,9 +14,9 @@ public class MapperWithHand {
 		} else {
 
 			OrderDTO orderDTO = new OrderDTO();
-			if(order.getBilling()!=null) {
-				orderDTO.setBillingCity(order.getBilling().getCity());
-				orderDTO.setBillingStreet(order.getBilling().getStreet());
+			if(order.getBillingAddress()!=null) {
+				orderDTO.setBillingCity(order.getBillingAddress().getCity());
+				orderDTO.setBillingStreet(order.getBillingAddress().getStreet());
 			}
 			if(order.getCustomer()!=null && order.getCustomer().getName()!=null) {
 				orderDTO.setCustomerFirstName(order.getCustomer().getName().getFirstName());
@@ -32,12 +32,12 @@ public class MapperWithHand {
 		} else {
 
 			Order order = new Order();
-			order.setBilling(new Address());
+			order.setBillingAddress(new Address());
 			order.setCustomer(new Customer());
 			order.getCustomer().setName(new Name());
 			
-			order.getBilling().setCity(orderDto.getBillingCity());
-			order.getBilling().setStreet(orderDto.getBillingStreet());
+			order.getBillingAddress().setCity(orderDto.getBillingCity());
+			order.getBillingAddress().setStreet(orderDto.getBillingStreet());
 			order.getCustomer().getName().setFirstName(orderDto.getCustomerFirstName());
 			order.getCustomer().getName().setLastName(orderDto.getCustomerLastName());
 			

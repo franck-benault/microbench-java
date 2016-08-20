@@ -21,11 +21,11 @@
         <b>customerLastName</b>
       </field>
       <field>
-        <a>billing.city</a>
+        <a>billingAddress.city</a>
         <b>billingCity</b>
       </field>
       <field>
-        <a>billing.street</a>
+        <a>billingAddress.street</a>
         <b>billingStreet</b>
       </field>
   </mapping> 

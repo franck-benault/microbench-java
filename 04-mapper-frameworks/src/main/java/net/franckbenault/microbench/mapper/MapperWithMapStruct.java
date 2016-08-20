@@ -15,8 +15,8 @@ public interface MapperWithMapStruct {
 	MapperWithMapStruct INSTANCE = Mappers.getMapper( MapperWithMapStruct.class );
 
 	 @Mappings({
-	        @Mapping(source = "billing.street", target = "billingStreet"),
-	        @Mapping(source = "billing.city", target = "billingCity"),
+	        @Mapping(source = "billingAddress.street", target = "billingStreet"),
+	        @Mapping(source = "billingAddress.city", target = "billingCity"),
 	        @Mapping(source = "customer.name.firstName", target="customerFirstName"),
 	        @Mapping(source = "customer.name.lastName", target="customerLastName")
 	    })

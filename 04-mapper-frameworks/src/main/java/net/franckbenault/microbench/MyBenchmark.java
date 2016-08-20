@@ -41,7 +41,7 @@ public class MyBenchmark {
 	
 	private Order getOrder(int i) {
 		Order order = new Order();
-		order.setBilling(getAddress(i));
+		order.setBillingAddress(getAddress(i));
 		order.setCustomer(getCustomer(i));
 		
 		return order;
