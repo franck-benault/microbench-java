@@ -4,7 +4,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class Order {
 	private Customer customer;
-	private Address billingAddress;
+	private Address billing;
 
 	public Customer getCustomer() {
 		return customer;
@@ -14,12 +14,12 @@ public class Order {
 		this.customer = customer;
 	}
 
-	public Address getBillingAddress() {
-		return billingAddress;
+	public Address getBilling() {
+		return billing;
 	}
 
-	public void setBillingAddress(Address billingAddress) {
-		this.billingAddress = billingAddress;
+	public void setBilling(Address billing) {
+		this.billing = billing;
 	}
 	
 	@Override

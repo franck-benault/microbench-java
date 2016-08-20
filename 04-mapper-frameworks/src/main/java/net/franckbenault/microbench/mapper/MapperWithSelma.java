@@ -8,8 +8,8 @@ import net.franckbenault.microbench.source.Order;
 
 @Mapper(
 	    withCustomFields = {
-	        @Field({"billingAddress.street", "billingStreet"}),
-	        @Field({"billingAddress.city", "billingCity"}),
+	        @Field({"billing.street", "billingStreet"}),
+	        @Field({"billing.city", "billingCity"}),
 	        @Field({"customer.name.firstName", "customerFirstName"}),
 	        @Field({"customer.name.lastName", "customerLastName"})
 	    }

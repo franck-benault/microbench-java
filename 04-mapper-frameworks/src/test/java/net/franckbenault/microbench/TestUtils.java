@@ -37,7 +37,7 @@ public class TestUtils {
 	
 	public static Order getOrder() {
 		Order order = new Order();
-		order.setBillingAddress(getAddress());
+		order.setBilling(getAddress());
 		order.setCustomer(getCustomer());
 		
 		return order;
@@ -66,9 +66,31 @@ public class TestUtils {
 			assertEquals(order.getCustomer().getName().getFirstName(), orderDTO.getCustomerFirstName());
 			assertEquals(order.getCustomer().getName().getLastName(), orderDTO.getCustomerLastName());
 		}
-		if(order.getBillingAddress()!=null) {
-			assertEquals(order.getBillingAddress().getStreet(), orderDTO.getBillingStreet());
-			assertEquals(order.getBillingAddress().getCity(), orderDTO.getBillingCity());
+		if(order.getBilling()!=null) {
+			assertEquals(order.getBilling().getStreet(), orderDTO.getBillingStreet());
+			assertEquals(order.getBilling().getCity(), orderDTO.getBillingCity());
+		}
+		checkMapping(orderDTO, order);
+	}
+	
+	public static void checkMapping(OrderDTO orderDTO, Order order) {
+		System.out.println("order="+order);
+		System.out.println("orderDTO="+orderDTO);
+		
+		if(orderDTO.getCustomerFirstName()!=null) {
+			assertEquals(order.getCustomer().getName().getFirstName(), orderDTO.getCustomerFirstName());
+		}
+		if(orderDTO.getCustomerLastName()!=null) {
+			assertEquals(order.getCustomer().getName().getFirstName(), orderDTO.getCustomerFirstName());
+		}
+		
+		if(orderDTO.getBillingCity()!=null) {
+			assertEquals(order.getBilling().getCity(), orderDTO.getBillingCity());
+		}
+		
+		if(orderDTO.getBillingStreet()!=null) {
+			assertEquals(order.getBilling().getStreet(), 
+					orderDTO.getBillingStreet());
 		}
 	}
 }

@@ -41,7 +41,7 @@ public class MyBenchmark {
 	
 	private Order getOrder(int i) {
 		Order order = new Order();
-		order.setBillingAddress(getAddress(i));
+		order.setBilling(getAddress(i));
 		order.setCustomer(getCustomer(i));
 		
 		return order;
@@ -173,20 +173,25 @@ public class MyBenchmark {
 		  bh.consume(order2);
 	  }
 	  
-	  //@Benchmark
+	  @Benchmark
 	  public void fullMapWithMapStruct(Blackhole bh) {
+	  
 		  Order order;
 		  for(int i=0; i<10; i++) {
 			  order = getOrder(i);
-			  OrderDTO dto = MapperWithMapStruct.INSTANCE.map(order);
-		  
+			  OrderDTO dto = MapperWithMapStruct.INSTANCE.asOrderDTO(order);
+			  Order order2 = MapperWithMapStruct.INSTANCE.asOrder(dto);
+			  
 			  bh.consume(dto);
+			  bh.consume(order2);
 		  }
 		  
 		  order = getOrderNull();
-		  OrderDTO dto2 = MapperWithMapStruct.INSTANCE.map(order);
+		  OrderDTO dto2 = MapperWithMapStruct.INSTANCE.asOrderDTO(order);
+		  Order order2 = MapperWithMapStruct.INSTANCE.asOrder(dto2);
 		  
 		  bh.consume(dto2);
+		  bh.consume(order2);
 	  }
 	  
 	  @Benchmark
