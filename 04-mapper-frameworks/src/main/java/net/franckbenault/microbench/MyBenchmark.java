@@ -8,7 +8,7 @@ import net.franckbenault.microbench.destination.OrderDTO;
 import net.franckbenault.microbench.mapper.AbstractMapper;
 import net.franckbenault.microbench.mapper.MapperWithMapStruct;
 import net.franckbenault.microbench.mapper.impl.MapperWithModelMapper;
-import net.franckbenault.microbench.mapper.MapperWithModelMapperOptimized;
+import net.franckbenault.microbench.mapper.impl.MapperWithModelMapperOptimized;
 import net.franckbenault.microbench.mapper.MapperWithSelma;
 import net.franckbenault.microbench.mapper.impl.MapperWithHand;
 import net.franckbenault.microbench.mapper.impl.MapperWithOrika;
@@ -96,7 +96,7 @@ public class MyBenchmark {
 	  
 	  @Benchmark
 	  public void fullMapWithModelMapperOptimized(Blackhole bh) {
-		  MapperWithModelMapperOptimized mapper = new MapperWithModelMapperOptimized();
+		  AbstractMapper mapper = new MapperWithModelMapperOptimized();
 		  
 		  Order order;
 		  for(int i=0; i<10; i++) {

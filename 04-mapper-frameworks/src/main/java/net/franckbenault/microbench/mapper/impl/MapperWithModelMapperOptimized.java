@@ -1,12 +1,13 @@
-package net.franckbenault.microbench.mapper;
+package net.franckbenault.microbench.mapper.impl;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
 
 import net.franckbenault.microbench.destination.OrderDTO;
+import net.franckbenault.microbench.mapper.AbstractMapper;
 import net.franckbenault.microbench.source.Order;
 
-public class MapperWithModelMapperOptimized {
+public class MapperWithModelMapperOptimized implements AbstractMapper {
 	
 	private static ModelMapper modelMapper;
 	

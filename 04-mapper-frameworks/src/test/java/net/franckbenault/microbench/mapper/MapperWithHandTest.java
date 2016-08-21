@@ -7,7 +7,6 @@ import org.junit.Test;
 import net.franckbenault.microbench.TestUtils;
 import net.franckbenault.microbench.destination.OrderDTO;
 import net.franckbenault.microbench.mapper.impl.MapperWithHand;
-import net.franckbenault.microbench.mapper.impl.MapperWithOrika;
 import net.franckbenault.microbench.source.Order;
 
 public class MapperWithHandTest {
