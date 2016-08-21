@@ -5,11 +5,13 @@ import org.openjdk.jmh.infra.Blackhole;
 
 import fr.xebia.extras.selma.Selma;
 import net.franckbenault.microbench.destination.OrderDTO;
+import net.franckbenault.microbench.mapper.AbstractMapper;
 import net.franckbenault.microbench.mapper.MapperWithMapStruct;
 import net.franckbenault.microbench.mapper.MapperWithModelMapper;
 import net.franckbenault.microbench.mapper.MapperWithModelMapperOptimized;
 import net.franckbenault.microbench.mapper.MapperWithSelma;
 import net.franckbenault.microbench.mapper.impl.MapperWithHand;
+import net.franckbenault.microbench.mapper.impl.MapperWithOrika;
 import net.franckbenault.microbench.source.Address;
 import net.franckbenault.microbench.source.Customer;
 import net.franckbenault.microbench.source.Name;
@@ -215,4 +217,27 @@ public class MyBenchmark {
 		  bh.consume(dto2);
 		  bh.consume(order2);
 	  }
+	  
+	  @Benchmark
+	  public void fullMapWithOrika(Blackhole bh) {
+		  AbstractMapper mapper = new MapperWithOrika();
+		  
+		  Order order;
+		  for(int i=0; i<10; i++) {
+			  order = getOrder(i);
+			  OrderDTO dto = mapper.asOrderDTO(order);
+			  Order order2 = mapper.asOrder(dto);
+			  
+			  bh.consume(dto);
+			  bh.consume(order2);
+		  }
+		  
+		  order = getOrderNull();
+		  OrderDTO dto2 = mapper.asOrderDTO(order);
+		  Order order2 = mapper.asOrder(dto2);
+		  
+		  bh.consume(dto2);
+		  bh.consume(order2);
+	  }
+
 }
