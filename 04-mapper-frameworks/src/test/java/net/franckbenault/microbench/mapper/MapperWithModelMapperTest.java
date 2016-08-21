@@ -6,14 +6,19 @@ import org.junit.Test;
 
 import net.franckbenault.microbench.TestUtils;
 import net.franckbenault.microbench.destination.OrderDTO;
+import net.franckbenault.microbench.mapper.impl.MapperWithModelMapper;
 import net.franckbenault.microbench.source.Order;
 
 public class MapperWithModelMapperTest {
+	
+	private AbstractMapper getMapper() {
+		return new MapperWithModelMapper();
+	}
 
 	@Test
 	public void testAsOrderDTO() {
 		Order order = TestUtils.getOrder();
-		MapperWithModelMapper mapper = new MapperWithModelMapper();
+		AbstractMapper mapper = getMapper();
 		OrderDTO orderDTO = mapper.asOrderDTO(order);
 		
 		assertNotNull(orderDTO);
@@ -23,7 +28,7 @@ public class MapperWithModelMapperTest {
 	@Test
 	public void testAsOrderDTOEmpty() {
 		Order order = new Order();
-		MapperWithModelMapper mapper = new MapperWithModelMapper();
+		AbstractMapper mapper = getMapper();
 		OrderDTO orderDTO = mapper.asOrderDTO(order);
 		
 		assertNotNull(orderDTO);
@@ -33,7 +38,7 @@ public class MapperWithModelMapperTest {
 	@Test
 	public void testAsOrder() {
 		OrderDTO orderDTO = TestUtils.getOrderDTO();
-		MapperWithModelMapper mapper = new MapperWithModelMapper();
+		AbstractMapper mapper = getMapper();
 		Order order = mapper.asOrder(orderDTO);
 		
 		assertNotNull(order);
@@ -43,7 +48,7 @@ public class MapperWithModelMapperTest {
 	@Test
 	public void testAsOrderEmpty() {
 		OrderDTO orderDTO = new OrderDTO();
-		MapperWithModelMapper mapper = new MapperWithModelMapper();
+		AbstractMapper mapper = getMapper();
 		Order order = mapper.asOrder(orderDTO);
 		
 		assertNotNull(order);

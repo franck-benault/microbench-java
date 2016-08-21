@@ -7,7 +7,7 @@ import fr.xebia.extras.selma.Selma;
 import net.franckbenault.microbench.destination.OrderDTO;
 import net.franckbenault.microbench.mapper.AbstractMapper;
 import net.franckbenault.microbench.mapper.MapperWithMapStruct;
-import net.franckbenault.microbench.mapper.MapperWithModelMapper;
+import net.franckbenault.microbench.mapper.impl.MapperWithModelMapper;
 import net.franckbenault.microbench.mapper.MapperWithModelMapperOptimized;
 import net.franckbenault.microbench.mapper.MapperWithSelma;
 import net.franckbenault.microbench.mapper.impl.MapperWithHand;
@@ -73,7 +73,7 @@ public class MyBenchmark {
 	  
 	  @Benchmark
 	  public void fullMapWithModelMapper(Blackhole bh) {
-		  MapperWithModelMapper mapper = new MapperWithModelMapper();
+		  AbstractMapper mapper = new MapperWithModelMapper();
 		  
 		  Order order;
 		  for(int i=0; i<10; i++) {
