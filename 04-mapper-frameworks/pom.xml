@@ -64,6 +64,11 @@
 			<artifactId>selma</artifactId>
 			<version>${selma.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>ma.glasnost.orika</groupId>
+			<artifactId>orika-core</artifactId>
+			<version>1.4.6</version>
+		</dependency>
 
 	</dependencies>
 
@@ -110,9 +115,9 @@
 						<version>${org.mapstruct.version}</version>
 					</dependency>
 					<dependency>
-                        <groupId>fr.xebia.extras</groupId>
-                        <artifactId>selma-processor</artifactId>
-                        <version>${selma.version}</version>
+						<groupId>fr.xebia.extras</groupId>
+						<artifactId>selma-processor</artifactId>
+						<version>${selma.version}</version>
 					</dependency>
 				</dependencies>
 			</plugin>

@@ -6,16 +6,15 @@ import org.junit.Test;
 
 import net.franckbenault.microbench.TestUtils;
 import net.franckbenault.microbench.destination.OrderDTO;
-import net.franckbenault.microbench.mapper.impl.MapperWithHand;
 import net.franckbenault.microbench.mapper.impl.MapperWithOrika;
 import net.franckbenault.microbench.source.Order;
 
-public class MapperWithHandTest {
-	
-	private AbstractMapper getMapper() {
-		return new MapperWithHand();
-	}
+public class MapperWithOrikaTest {
 
+	private AbstractMapper getMapper() {
+		return new MapperWithOrika();
+	}
+	
 	@Test
 	public void testAsOrderDTO() {
 		Order order = TestUtils.getOrder();
@@ -50,6 +49,7 @@ public class MapperWithHandTest {
 	public void testAsOrderEmpty() {
 		OrderDTO orderDTO = new OrderDTO();
 		AbstractMapper mapper = getMapper();
+		
 		Order order = mapper.asOrder(orderDTO);
 		
 		assertNotNull(order);

@@ -5,11 +5,11 @@ import org.openjdk.jmh.infra.Blackhole;
 
 import fr.xebia.extras.selma.Selma;
 import net.franckbenault.microbench.destination.OrderDTO;
-import net.franckbenault.microbench.mapper.MapperWithHand;
 import net.franckbenault.microbench.mapper.MapperWithMapStruct;
 import net.franckbenault.microbench.mapper.MapperWithModelMapper;
 import net.franckbenault.microbench.mapper.MapperWithModelMapperOptimized;
 import net.franckbenault.microbench.mapper.MapperWithSelma;
+import net.franckbenault.microbench.mapper.impl.MapperWithHand;
 import net.franckbenault.microbench.source.Address;
 import net.franckbenault.microbench.source.Customer;
 import net.franckbenault.microbench.source.Name;

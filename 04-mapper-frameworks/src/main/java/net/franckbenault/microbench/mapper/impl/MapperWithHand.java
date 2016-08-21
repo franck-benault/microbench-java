@@ -1,12 +1,13 @@
-package net.franckbenault.microbench.mapper;
+package net.franckbenault.microbench.mapper.impl;
 
 import net.franckbenault.microbench.destination.OrderDTO;
+import net.franckbenault.microbench.mapper.AbstractMapper;
 import net.franckbenault.microbench.source.Address;
 import net.franckbenault.microbench.source.Customer;
 import net.franckbenault.microbench.source.Name;
 import net.franckbenault.microbench.source.Order;
 
-public class MapperWithHand {
+public class MapperWithHand implements AbstractMapper {
 
     public OrderDTO asOrderDTO(Order order) {
 		if (order == null) {
