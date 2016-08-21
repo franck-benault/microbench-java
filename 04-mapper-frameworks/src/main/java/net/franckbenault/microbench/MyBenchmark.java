@@ -10,6 +10,8 @@ import net.franckbenault.microbench.mapper.MapperWithMapStruct;
 import net.franckbenault.microbench.mapper.impl.MapperWithModelMapper;
 import net.franckbenault.microbench.mapper.impl.MapperWithModelMapperOptimized;
 import net.franckbenault.microbench.mapper.MapperWithSelma;
+import net.franckbenault.microbench.mapper.impl.MapperWithDozer;
+import net.franckbenault.microbench.mapper.impl.MapperWithDozerOptimized;
 import net.franckbenault.microbench.mapper.impl.MapperWithHand;
 import net.franckbenault.microbench.mapper.impl.MapperWithOrika;
 import net.franckbenault.microbench.source.Address;
@@ -117,37 +119,49 @@ public class MyBenchmark {
 		  
 	  }
 	  
-	  //@Benchmark
+	  @Benchmark
 	  public void fullMapWithDozer(Blackhole bh) {
+		  AbstractMapper mapper = new MapperWithDozer();
+		  
 		  Order order;
 		  for(int i=0; i<10; i++) {
 			  order = getOrder(i);
-			  OrderDTO dto = MapperUtil.mapWithDozer(order);
-		  
+			  OrderDTO dto = mapper.asOrderDTO(order);
+			  Order order2 = mapper.asOrder(dto);
+			  
 			  bh.consume(dto);
+			  bh.consume(order2);
 		  }
 		  
 		  order = getOrderNull();
-		  OrderDTO dto2 = MapperUtil.mapWithDozer(order);
+		  OrderDTO dto2 = mapper.asOrderDTO(order);
+		  Order order2 = mapper.asOrder(dto2);
 		  
 		  bh.consume(dto2);
+		  bh.consume(order2);
 		  
 	  }
 	  
-	  //@Benchmark
+	  @Benchmark
 	  public void fullMapWithDozerOptimized(Blackhole bh) {
+		  AbstractMapper mapper = new MapperWithDozerOptimized();
+		  
 		  Order order;
 		  for(int i=0; i<10; i++) {
 			  order = getOrder(i);
-			  OrderDTO dto = MapperUtil.mapWithDozerOptimized(order);
-		  
+			  OrderDTO dto = mapper.asOrderDTO(order);
+			  Order order2 = mapper.asOrder(dto);
+			  
 			  bh.consume(dto);
+			  bh.consume(order2);
 		  }
 		  
 		  order = getOrderNull();
-		  OrderDTO dto2 = MapperUtil.mapWithDozerOptimized(order);
+		  OrderDTO dto2 = mapper.asOrderDTO(order);
+		  Order order2 = mapper.asOrder(dto2);
 		  
 		  bh.consume(dto2);
+		  bh.consume(order2);
 		  
 	  }
 	  

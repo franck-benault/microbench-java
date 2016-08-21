@@ -64,32 +64,7 @@ public class MapperUtilTest {
 		checkMapping(order, orderDTO);		
 	}
 	
-	@Test
-	public void testMapWithDozer() {
-		
-		Order order = getOrder();
-		OrderDTO orderDTO =MapperUtil.mapWithDozer(order);
-		checkMapping(order, orderDTO);
-		
-		order = getOrderNull();
-		orderDTO =MapperUtil.mapWithDozer(order);
-		checkMapping(order, orderDTO);		
-	}
-	
-	@Test
-	public void testMapWithDozerOptimized() {
-		
-		Order order = getOrder();
-		OrderDTO orderDTO =MapperUtil.mapWithDozerOptimized(order);
-		checkMapping(order, orderDTO);
-		
-		order = getOrderNull();
-		orderDTO =MapperUtil.mapWithDozerOptimized(order);
-		checkMapping(order, orderDTO);		
-	}
 
-
-	
 	private void checkMapping(Order order, OrderDTO orderDTO) {
 		System.out.println("order="+order);
 		System.out.println("orderDTO="+orderDTO);
