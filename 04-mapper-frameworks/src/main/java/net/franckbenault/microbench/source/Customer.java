@@ -3,6 +3,10 @@ package net.franckbenault.microbench.source;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class Customer {
+	
+	public Customer() {
+		this.name = new Name();
+	}
 	private Name name;
 
 	public Name getName() {

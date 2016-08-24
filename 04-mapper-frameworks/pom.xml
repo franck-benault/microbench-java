@@ -69,6 +69,12 @@
 			<artifactId>orika-core</artifactId>
 			<version>1.4.6</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.googlecode.jmapper-framework/jmapper-core -->
+		<dependency>
+			<groupId>com.googlecode.jmapper-framework</groupId>
+			<artifactId>jmapper-core</artifactId>
+			<version>1.6.0.1</version>
+		</dependency>
 
 	</dependencies>
 

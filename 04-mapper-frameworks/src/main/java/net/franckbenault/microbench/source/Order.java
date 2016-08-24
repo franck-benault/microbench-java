@@ -5,6 +5,11 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 public class Order {
 	private Customer customer;
 	private Address billingAddress;
+	
+	public Order() {
+		this.customer=new Customer();
+		this.billingAddress = new Address();
+	}
 
 	public Customer getCustomer() {
 		return customer;

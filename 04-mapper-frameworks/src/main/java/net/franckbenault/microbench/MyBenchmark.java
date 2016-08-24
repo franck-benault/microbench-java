@@ -13,6 +13,7 @@ import net.franckbenault.microbench.mapper.MapperWithSelma;
 import net.franckbenault.microbench.mapper.impl.MapperWithDozer;
 import net.franckbenault.microbench.mapper.impl.MapperWithDozerOptimized;
 import net.franckbenault.microbench.mapper.impl.MapperWithHand;
+import net.franckbenault.microbench.mapper.impl.MapperWithJMapper;
 import net.franckbenault.microbench.mapper.impl.MapperWithOrika;
 import net.franckbenault.microbench.mapper.impl.MapperWithOrikaOptimized;
 import net.franckbenault.microbench.mapper.impl.MapperWithOrikaOptimized2;
@@ -281,6 +282,28 @@ public class MyBenchmark {
 	  @Benchmark
 	  public void fullMapWithOrikaOptimized2(Blackhole bh) {
 		  AbstractMapper mapper = new MapperWithOrikaOptimized2();
+		  
+		  Order order;
+		  for(int i=0; i<10; i++) {
+			  order = getOrder(i);
+			  OrderDTO dto = mapper.asOrderDTO(order);
+			  Order order2 = mapper.asOrder(dto);
+			  
+			  bh.consume(dto);
+			  bh.consume(order2);
+		  }
+		  
+		  order = getOrderNull();
+		  OrderDTO dto2 = mapper.asOrderDTO(order);
+		  Order order2 = mapper.asOrder(dto2);
+		  
+		  bh.consume(dto2);
+		  bh.consume(order2);
+	  }
+
+	  @Benchmark
+	  public void fullMapWithJMapper(Blackhole bh) {
+		  AbstractMapper mapper = new MapperWithJMapper();
 		  
 		  Order order;
 		  for(int i=0; i<10; i++) {
