@@ -28,6 +28,7 @@ public class MapperWithJMapperTest {
 	@Test
 	public void testAsOrderDTOEmpty() {
 		Order order = new Order();
+		order.fillOrder();
 		AbstractMapper mapper = getMapper();
 		OrderDTO orderDTO = mapper.asOrderDTO(order);
 		

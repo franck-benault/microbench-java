@@ -4,8 +4,8 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class Customer {
 	
-	public Customer() {
-		this.name = new Name();
+	public void fillCustomer() {
+		name = new Name();
 	}
 	private Name name;
 

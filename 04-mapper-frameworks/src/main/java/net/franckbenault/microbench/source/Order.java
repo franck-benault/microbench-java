@@ -6,9 +6,10 @@ public class Order {
 	private Customer customer;
 	private Address billingAddress;
 	
-	public Order() {
-		this.customer=new Customer();
-		this.billingAddress = new Address();
+	public void fillOrder() {
+		customer = new Customer();
+		billingAddress = new Address();
+		customer.fillCustomer();
 	}
 
 	public Customer getCustomer() {

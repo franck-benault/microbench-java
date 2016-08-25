@@ -56,6 +56,7 @@ public class MyBenchmark {
 
 	private Order getOrderNull() {
 		Order order = new Order();
+		order.fillOrder();
 		return order;
 	}
 	
