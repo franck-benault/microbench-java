@@ -17,3 +17,4 @@ Selma | 746 000 | 79 | Compile time code generation
 MapStruct | 727 000 | 77 | Compile time code generation
 JMapper | 637 000 | 68 | byte code manipulation (javassist)
 Orika | 93 400 | 9.9 | byte code generation (API java compiler)
+ModelMapper | 10 200 | 1.1 | introspection
