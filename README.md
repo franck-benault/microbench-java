@@ -8,6 +8,7 @@ http://javaetmoi.com/2015/09/benchmark-frameworks-javas-mapping-objet/
 
 For the following result, be careful with the cost of the initialization of the object.
 So we have to cache some object to avoid useless and costly initialization.
+You can see that the frameworks using introspection are less efficient. 
 
 Framework | Performance (op/s) | % with Fill input  |  Comment
 --- | --- | --- | ---
