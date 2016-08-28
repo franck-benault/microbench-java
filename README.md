@@ -8,9 +8,7 @@ http://javaetmoi.com/2015/09/benchmark-frameworks-javas-mapping-objet/
 
 
 
-Framework     | performance (op/s) |   Comment 
-
-Framework | Performance (op/s) | Comment
---- | --- | ---
-*Still* | `renders` | **nicely**
-Fill input (no mapping done) | 939 000 | reference if the mapping costs nothing
+Framework | Performance (op/s) | % with Fill input  |  Comment
+--- | --- | --- | ---
+Fill input (no mapping done) | 939 000 | 100  | reference if the mapping costs nothing
+Fill by hand | 714 000 |  76  | simple code write by hand 
