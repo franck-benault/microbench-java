@@ -27,7 +27,7 @@ public class MyObjectWithGuava extends MyObject {
 
 	@Override
 	public String toString() {
-	    return  MoreObjects.toStringHelper(this)
+	    return  MoreObjects.toStringHelper(this) 		
 	    .add("att1", att1)
 	    .add("att2", att2)
 	    .add("att3", att3).toString();

@@ -17,10 +17,10 @@ public class MyObjectWithStringBuilder extends MyObject {
 	@Override
 	public String toString() {
 		
-	    final StringBuilder sb = new StringBuilder("MyObject[");
-	    sb.append("att1='").append(att1);
-	    sb.append(", att2='").append(att2);
-	    sb.append(", att3='").append(att3).append(']');
+	    final StringBuilder sb = new StringBuilder("MyObjectWithStringBuilder{");
+	    sb.append("att1=").append(att1);
+	    sb.append(", att2=").append(att2);
+	    sb.append(", att3=").append(att3).append('}');
 	    return sb.toString();
 	}
 

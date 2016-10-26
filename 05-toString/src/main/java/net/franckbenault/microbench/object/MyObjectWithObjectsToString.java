@@ -17,9 +17,9 @@ public class MyObjectWithObjectsToString extends MyObject {
 	
 	@Override
 	public String toString() {
-		return "MyObject [att1=" + Objects.toString(att1) +
+		return "MyObjectWithObjectsToString{att1=" + Objects.toString(att1) +
 				", att2=" + Objects.toString(att2) +
-				", att3=" + Objects.toString(att3) + "]";
+				", att3=" + Objects.toString(att3) + "}";
 	}
 
 	

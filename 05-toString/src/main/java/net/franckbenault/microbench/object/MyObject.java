@@ -17,7 +17,7 @@ public class MyObject {
 	
 	@Override
 	public String toString() {
-		return "MyObject [att1=" + att1 + ", att2=" + att2 + ", att3=" + att3 + "]";
+		return "MyObject{att1=" + att1 + ", att2=" + att2 + ", att3=" + att3 + "}";
 	}
 
 	
