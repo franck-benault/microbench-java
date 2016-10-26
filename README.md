@@ -20,3 +20,8 @@ JMapper | 637 000 | 68 | byte code manipulation (javassist)
 Orika | 93 400 | 9.9 | byte code generation (API java compiler)
 ModelMapper | 10 200 | 1.1 | introspection
 Dozer | 3 400 | 0.37 | introspection
+
+## 05 toString
+
+see the examples in the following the link :
+https://antoniogoncalves.org/2015/06/30/who-cares-about-tostring-performance/
