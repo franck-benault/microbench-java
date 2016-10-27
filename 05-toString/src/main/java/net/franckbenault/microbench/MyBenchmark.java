@@ -6,6 +6,7 @@ import org.openjdk.jmh.infra.Blackhole;
 import net.franckbenault.microbench.object.MyObject;
 import net.franckbenault.microbench.object.MyObjectWithCommonsLang3Reflexion;
 import net.franckbenault.microbench.object.MyObjectWithGuava;
+import net.franckbenault.microbench.object.MyObjectWithLombok;
 import net.franckbenault.microbench.object.MyObjectWithObjectsToString;
 import net.franckbenault.microbench.object.MyObjectWithStringBuilder;
 
@@ -49,6 +50,14 @@ public class MyBenchmark {
 
 	private MyObjectWithCommonsLang3Reflexion getMyObjectWithCommonsLang3ReflexionNull() {
 		return new MyObjectWithCommonsLang3Reflexion();
+	}
+	
+	private MyObjectWithLombok getMyObjectWithLombok(int i) {
+		return new MyObjectWithLombok("a"+i,"b"+i, "c"+i);
+	}
+
+	private MyObjectWithLombok getMyObjectWithLombokNull() {
+		return new MyObjectWithLombok();
 	}
 
 	  @Benchmark
@@ -136,6 +145,20 @@ public class MyBenchmark {
 			  bh.consume(s);
 		  }
 		  o = getMyObjectWithCommonsLang3ReflexionNull();
+		  s = o.toString();		  
+		  bh.consume(s);
+	  }
+	  
+	  @Benchmark
+	  public void withLombok(Blackhole bh) {
+		  String s;
+		  MyObject o;
+		  for(int i=0; i<10; i++) {
+			  o = getMyObjectWithLombok(i);	
+			  s = o.toString();
+			  bh.consume(s);
+		  }
+		  o = getMyObjectWithLombokNull();
 		  s = o.toString();		  
 		  bh.consume(s);
 	  }
