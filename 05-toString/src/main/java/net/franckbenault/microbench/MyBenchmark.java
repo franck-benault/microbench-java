@@ -4,6 +4,7 @@ import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.infra.Blackhole;
 
 import net.franckbenault.microbench.object.MyObject;
+import net.franckbenault.microbench.object.MyObjectWithCommonsLang3Reflexion;
 import net.franckbenault.microbench.object.MyObjectWithGuava;
 import net.franckbenault.microbench.object.MyObjectWithObjectsToString;
 import net.franckbenault.microbench.object.MyObjectWithStringBuilder;
@@ -42,6 +43,13 @@ public class MyBenchmark {
 		return new MyObjectWithGuava();
 	}
 
+	private MyObjectWithCommonsLang3Reflexion getMyObjectWithCommonsLang3Reflexion(int i) {
+		return new MyObjectWithCommonsLang3Reflexion("a"+i,"b"+i, "c"+i);
+	}
+
+	private MyObjectWithCommonsLang3Reflexion getMyObjectWithCommonsLang3ReflexionNull() {
+		return new MyObjectWithCommonsLang3Reflexion();
+	}
 
 	  @Benchmark
 	  public void nothing() {
@@ -113,6 +121,21 @@ public class MyBenchmark {
 			  bh.consume(s);
 		  }
 		  o = getMyObjectWithGuavaNull();
+		  s = o.toString();		  
+		  bh.consume(s);
+	  }
+	  
+	  
+	  @Benchmark
+	  public void withCommonsLang3Reflexion(Blackhole bh) {
+		  String s;
+		  MyObject o;
+		  for(int i=0; i<10; i++) {
+			  o = getMyObjectWithCommonsLang3Reflexion(i);	
+			  s = o.toString();
+			  bh.consume(s);
+		  }
+		  o = getMyObjectWithCommonsLang3ReflexionNull();
 		  s = o.toString();		  
 		  bh.consume(s);
 	  }
