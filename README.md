@@ -6,9 +6,9 @@ example with JMH tool for micro bechn in java
 
 Framework | Performance (op/s) | Code Example 
 --- | --- | ---
-concatenation | 75 400 | logger.debug("Concatenating strings " + a + b + b);
-Variable arguments | 1 518 000 | logger.debug("Variable arguments {} {} {}", a , b , c);
-Variable arguments and isDebugEnabled | 1 830 000 | if (logger.isDebugEnabled()) logger.debug("Variable arguments {} {} {}", a , b , c);
+concatenation | 76 084 | logger.debug("Concatenating strings " + a + b + b);
+Variable arguments | 1 519 000 | logger.debug("Variable arguments {} {} {}", a , b , c);
+Variable arguments and isDebugEnabled | 1 831 000 | if (logger.isDebugEnabled()) logger.debug("Variable arguments {} {} {}", a , b , c);
  
 
 ## 04  mapper frameworks
