@@ -17,12 +17,10 @@
 		<dependency>
 			<groupId>org.openjdk.jmh</groupId>
 			<artifactId>jmh-core</artifactId>
-			<version>${jmh.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.openjdk.jmh</groupId>
 			<artifactId>jmh-generator-annprocess</artifactId>
-			<version>${jmh.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -40,8 +38,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<!-- JMH version to use with this project. -->
-		<jmh.version>1.13</jmh.version>
+
 
 		<!-- Java source/target to use for compilation. -->
 		<javac.target>1.8</javac.target>

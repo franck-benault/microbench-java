@@ -8,6 +8,8 @@
 	<packaging>pom</packaging>
 	<properties>
 		<junit-quickcheck.version>0.6</junit-quickcheck.version>
+		<!-- JMH version to use with this project. -->
+		<jmh.version>1.13</jmh.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -20,7 +22,7 @@
 			<dependency>
 				<groupId>org.openjdk.jmh</groupId>
 				<artifactId>jmh-core</artifactId>
-				<version>1.13</version>
+				<version>${jmh.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.commons</groupId>
@@ -30,7 +32,13 @@
 			<dependency>
 				<groupId>org.openjdk.jmh</groupId>
 				<artifactId>jmh-core-benchmarks</artifactId>
-				<version>1.13</version>
+				<version>${jmh.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.openjdk.jmh</groupId>
+				<artifactId>jmh-generator-annprocess</artifactId>
+				<version>${jmh.version}</version>
+				<scope>provided</scope>
 			</dependency>
 			<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
 			<dependency>
