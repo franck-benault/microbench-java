@@ -2,6 +2,15 @@
 example with JMH tool for micro bechn in java
 
 # Examples
+## 02 logging
+
+Framework | Performance (op/s) 
+--- | --- 
+concatenation | 75 400
+Variable arguments | 1 518 000 
+Variable arguments and isDebugEnabled | 1 830 000
+ 
+
 ## 04  mapper frameworks
 Example (in French) here 
 http://javaetmoi.com/2015/09/benchmark-frameworks-javas-mapping-objet/
