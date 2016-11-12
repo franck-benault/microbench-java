@@ -13,71 +13,69 @@ import org.slf4j.LoggerFactory;
 
 public class MyBenchmark {
 
-  private static final Logger logger = LoggerFactory.getLogger(MyBenchmark.class);
+	private static final Logger logger = LoggerFactory.getLogger(MyBenchmark.class);
 
-  @State(Scope.Benchmark)
-  public static class ATripletList {
-	  
-	  List<Triplet> list = new ArrayList<Triplet>(100);
-      
-	  @Setup(Level.Trial)
-	  public void initList() {
-		  String x = "a", y = "b", z = "c";
+	@State(Scope.Benchmark)
+	public static class ATripletList {
 
-      	for (int i = 0; i < 100; i++) {
-          x += i; y += i; z += i;
-          Triplet t = new Triplet(x,y,z);
-          list.add(t);
-      	}
-	  }
-      
-	  List<Triplet> getTripletList() {
-		  List<Triplet> dest = new ArrayList<Triplet>(list);
-	
+		List<Triplet> list = new ArrayList<Triplet>(100);
 
-	      return dest;
-	  }
-  }
-  
-  
-  @Benchmark
-  public void empty() {
+		@Setup(Level.Trial)
+		public void initList() {
+			String x = "a", y = "b", z = "c";
 
-  }
-  
-  @Benchmark
-  public ATripletList checkCostObjectCreation(ATripletList list) {
-	  return list;
+			for (int i = 0; i < 100; i++) {
+				x += i;
+				y += i;
+				z += i;
+				Triplet t = new Triplet(x, y, z);
+				list.add(t);
+			}
+		}
 
-  }
-  
-  @Benchmark
-  public void testConcatenatingStrings(ATripletList list) {
+		List<Triplet> getTripletList() {
+			List<Triplet> dest = new ArrayList<Triplet>(list);
 
-      for (Triplet t:list.getTripletList()) {
- 
-          logger.debug("Concatenating strings " + t.getA() + t.getB() + t.getC());
-      }
-  }
+			return dest;
+		}
+	}
 
-  @Benchmark
-  public void testVariableArguments(ATripletList list) {
+	@Benchmark
+	public void empty() {
 
+	}
 
-      for (Triplet t:list.getTripletList()) {
-          logger.debug("Variable arguments {} {} {}", t.getA() , t.getB() , t.getC());
-      }
-  }
+	@Benchmark
+	public ATripletList checkCostObjectCreation(ATripletList list) {
+		return list;
 
-  @Benchmark
-  public void testIfDebugEnabled(ATripletList list) {
+	}
 
-  
-      for (Triplet t:list.getTripletList()) {
+	@Benchmark
+	public void testConcatenatingStrings(ATripletList list) {
 
-          if (logger.isDebugEnabled())
-              logger.debug("Variable arguments {} {} {}", t.getA() , t.getB() , t.getC());
-          
-      }
-  }
+		for (Triplet t : list.getTripletList()) {
+
+			logger.debug("Concatenating strings " + t.getA() + t.getB() + t.getC());
+		}
+	}
+
+	@Benchmark
+	public void testVariableArguments(ATripletList list) {
+
+		for (Triplet t : list.getTripletList()) {
+			logger.debug("Variable arguments {} {} {}", t.getA(), t.getB(), t.getC());
+		}
+	}
+
+	@Benchmark
+	public void testIfDebugEnabled(ATripletList list) {
+
+		for (Triplet t : list.getTripletList()) {
+
+			if (logger.isDebugEnabled())
+				logger.debug("Variable arguments {} {} {}", t.getA(), t.getB(), t.getC());
+
+		}
+	}
 }

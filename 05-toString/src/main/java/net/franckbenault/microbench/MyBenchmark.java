@@ -1,6 +1,13 @@
 package net.franckbenault.microbench;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.Level;
+import org.openjdk.jmh.annotations.Scope;
+import org.openjdk.jmh.annotations.Setup;
+import org.openjdk.jmh.annotations.State;
 import org.openjdk.jmh.infra.Blackhole;
 
 import net.franckbenault.microbench.object.MyObject;
@@ -11,155 +18,105 @@ import net.franckbenault.microbench.object.MyObjectWithObjectsToString;
 import net.franckbenault.microbench.object.MyObjectWithStringBuilder;
 
 public class MyBenchmark {
-	
-	private MyObject getMyObject(int i) {
-		return new MyObject("a"+i,"b"+i, "c"+i);
+
+	@State(Scope.Benchmark)
+	public static class BenchmarkState {
+
+		List<MyObject> list1 = new ArrayList<MyObject>(11);
+		List<MyObjectWithObjectsToString> list2 = new ArrayList<MyObjectWithObjectsToString>(11);
+		List<MyObjectWithStringBuilder> list3 = new ArrayList<MyObjectWithStringBuilder>(11);
+		List<MyObjectWithGuava> list4 = new ArrayList<MyObjectWithGuava>(11);
+		List<MyObjectWithCommonsLang3Reflexion> list5 = new ArrayList<MyObjectWithCommonsLang3Reflexion>(11);
+		List<MyObjectWithLombok> list6 = new ArrayList<MyObjectWithLombok>(11);
+		
+		
+		@Setup(Level.Trial)
+		public void initList() {
+			for (int i = 0; i < 10; i++) {
+				list1.add(new MyObject("a" + i, "b" + i, "c" + i));
+				list2.add(new MyObjectWithObjectsToString("a" + i, "b" + i, "c" + i));
+				list3.add(new MyObjectWithStringBuilder("a" + i, "b" + i, "c" + i));
+				list4.add(new MyObjectWithGuava("a" + i, "b" + i, "c" + i));
+				list5.add(new MyObjectWithCommonsLang3Reflexion("a" + i, "b" + i, "c" + i));
+				list6.add(new MyObjectWithLombok("a" + i, "b" + i, "c" + i));
+			}
+			list1.add(new MyObject());
+			list2.add(new MyObjectWithObjectsToString());
+			list3.add(new MyObjectWithStringBuilder());
+			list4.add(new MyObjectWithGuava());
+			list5.add(new MyObjectWithCommonsLang3Reflexion());
+			list6.add(new MyObjectWithLombok());
+		}
 	}
 
-	private MyObject getMyObjectNull() {
-		return new MyObject();
-	}
-	
-	private MyObjectWithObjectsToString getMyObjectWithObjectsToString(int i) {
-		return new MyObjectWithObjectsToString("a"+i,"b"+i, "c"+i);
-	}
 
-	private MyObjectWithObjectsToString getMyObjectWithObjectsToStringNull() {
-		return new MyObjectWithObjectsToString();
-	}
-	
-	private MyObjectWithStringBuilder getMyObjectWithStringBuilder(int i) {
-		return new MyObjectWithStringBuilder("a"+i,"b"+i, "c"+i);
-	}
 
-	private MyObjectWithStringBuilder getMyObjectWithStringBuilderNull() {
-		return new MyObjectWithStringBuilder();
-	}
-	
-	private MyObjectWithGuava getMyObjectWithGuava(int i) {
-		return new MyObjectWithGuava("a"+i,"b"+i, "c"+i);
-	}
 
-	private MyObjectWithGuava getMyObjectWithGuavaNull() {
-		return new MyObjectWithGuava();
-	}
+	@Benchmark
+	public void nothing() {
 
-	private MyObjectWithCommonsLang3Reflexion getMyObjectWithCommonsLang3Reflexion(int i) {
-		return new MyObjectWithCommonsLang3Reflexion("a"+i,"b"+i, "c"+i);
-	}
-
-	private MyObjectWithCommonsLang3Reflexion getMyObjectWithCommonsLang3ReflexionNull() {
-		return new MyObjectWithCommonsLang3Reflexion();
 	}
 	
-	private MyObjectWithLombok getMyObjectWithLombok(int i) {
-		return new MyObjectWithLombok("a"+i,"b"+i, "c"+i);
+
+	@Benchmark
+	public void costObjectCreationAndLoop(BenchmarkState bs, Blackhole bh) {
+		for (MyObject o : bs.list1) {
+			bh.consume(o);
+		}
 	}
 
-	private MyObjectWithLombok getMyObjectWithLombokNull() {
-		return new MyObjectWithLombok();
+	@Benchmark
+	public void simpleToString(BenchmarkState bs, Blackhole bh) {
+		for (MyObject o : bs.list1) {
+			String s = o.toString();
+			bh.consume(s);
+		}
 	}
 
-	  @Benchmark
-	  public void nothing() {
+	@Benchmark
+	public void withObjectsToString(BenchmarkState bs, Blackhole bh) {		
+		for (MyObjectWithObjectsToString o : bs.list2) {
+			String s = o.toString();
+			bh.consume(s);
+		}
+	}
 
-	  }
+	@Benchmark
+	public void withStringBuilder(BenchmarkState bs, Blackhole bh) {
+		for (MyObjectWithStringBuilder o : bs.list3) {
+			String s = o.toString();
+			bh.consume(s);
+		}
+	}
 
-	  @Benchmark
-	  public void costObjectCreation(Blackhole bh) {
-		  MyObject o;
-		  for(int i=0; i<10; i++) {
-			  o = getMyObject(i);		  
-			  bh.consume(o);
-		  }
-		  o = getMyObjectNull();
-		  
-		  bh.consume(o);
-	  }
+	@Benchmark
+	public void withGuava(BenchmarkState bs, Blackhole bh) {		
+		for (MyObjectWithGuava o : bs.list4) {
+			String s = o.toString();
+			bh.consume(s);
+		}
 
-	  
-	  @Benchmark
-	  public void simpleToString(Blackhole bh) {
-		  String s;
-		  MyObject o;
-		  for(int i=0; i<10; i++) {
-			  o = getMyObject(i);	
-			  s = o.toString();
-			  bh.consume(s);
-		  }
-		  o = getMyObjectNull();
-		  s = o.toString();		  
-		  bh.consume(s);
-	  }
+	}
 
-	  @Benchmark
-	  public void withObjectsToString(Blackhole bh) {
-		  String s;
-		  MyObject o;
-		  for(int i=0; i<10; i++) {
-			  o = getMyObjectWithObjectsToString(i);	
-			  s = o.toString();
-			  bh.consume(s);
-		  }
-		  o = getMyObjectWithObjectsToStringNull();
-		  s = o.toString();		  
-		  bh.consume(s);
-	  }
-	  
-	  @Benchmark
-	  public void withStringBuilder(Blackhole bh) {
-		  String s;
-		  MyObject o;
-		  for(int i=0; i<10; i++) {
-			  o = getMyObjectWithStringBuilder(i);	
-			  s = o.toString();
-			  bh.consume(s);
-		  }
-		  o = getMyObjectWithStringBuilderNull();
-		  s = o.toString();		  
-		  bh.consume(s);
-	  }
-	  
-	  @Benchmark
-	  public void withGuava(Blackhole bh) {
-		  String s;
-		  MyObject o;
-		  for(int i=0; i<10; i++) {
-			  o = getMyObjectWithGuava(i);	
-			  s = o.toString();
-			  bh.consume(s);
-		  }
-		  o = getMyObjectWithGuavaNull();
-		  s = o.toString();		  
-		  bh.consume(s);
-	  }
-	  
-	  
-	  @Benchmark
-	  public void withCommonsLang3Reflexion(Blackhole bh) {
-		  String s;
-		  MyObject o;
-		  for(int i=0; i<10; i++) {
-			  o = getMyObjectWithCommonsLang3Reflexion(i);	
-			  s = o.toString();
-			  bh.consume(s);
-		  }
-		  o = getMyObjectWithCommonsLang3ReflexionNull();
-		  s = o.toString();		  
-		  bh.consume(s);
-	  }
-	  
-	  @Benchmark
-	  public void withLombok(Blackhole bh) {
-		  String s;
-		  MyObject o;
-		  for(int i=0; i<10; i++) {
-			  o = getMyObjectWithLombok(i);	
-			  s = o.toString();
-			  bh.consume(s);
-		  }
-		  o = getMyObjectWithLombokNull();
-		  s = o.toString();		  
-		  bh.consume(s);
-	  }
+	@Benchmark
+	public void withCommonsLang3Reflexion(BenchmarkState bs, Blackhole bh) {
+		
+		for (MyObjectWithCommonsLang3Reflexion o : bs.list5) {
+			String s = o.toString();
+			bh.consume(s);
+		}
+		
+
+	}
+
+	@Benchmark
+	public void withLombok(BenchmarkState bs, Blackhole bh) {
+		
+		for (MyObjectWithLombok o : bs.list6) {
+			String s = o.toString();
+			bh.consume(s);
+		}
+		
+
+	}
 }

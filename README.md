@@ -34,3 +34,13 @@ Dozer | 3 400 | 0.37 | introspection
 
 see the examples in the following the link :
 https://antoniogoncalves.org/2015/06/30/who-cares-about-tostring-performance/
+
+Framework | Performance (op/s) | Code Example 
+--- | --- | ---
+Manual toString() | 1 105 000 | "MyObject{att1=" + att1 + ", att2=" + att2 + ", att3=" + att3 + "}";
+Project lombok | 1 077 000 | Nothing
+Manual toString() with Object | 1 073 000 | "MyObjectWithObjectsToString{att1=" + Objects.toString(att1) +...
+Manual toString() with StringBuilder | 452 000 | new StringBuilder("...).append(...
+Guava | 180 000 | MoreObjects.toStringHelper(this).add("att1", att1) ...
+CommonsLang3 reflexion | 54 400 | ReflectionToStringBuilder.toString(this);
+
