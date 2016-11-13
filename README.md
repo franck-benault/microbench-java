@@ -6,7 +6,7 @@ example with JMH tool for micro bechn in java
 
 Framework | Performance (op/s) | Code Example 
 --- | --- | ---
-concatenation | 76 084 | logger.debug("Concatenating strings " + a + b + b);
+concatenation | 76 100 | logger.debug("Concatenating strings " + a + b + b);
 Variable arguments | 1 519 000 | logger.debug("Variable arguments {} {} {}", a , b , c);
 Variable arguments and isDebugEnabled | 1 831 000 | if (logger.isDebugEnabled()) logger.debug("Variable arguments {} {} {}", a , b , c);
  
@@ -19,16 +19,15 @@ For the following result, be careful with the cost of the initialization of the 
 So we have to cache some object to avoid useless and costly initialization.
 You can see that the frameworks using introspection are less efficient. 
 
-Framework | Performance (op/s) | % with Fill input  |  Comment
---- | --- | --- | ---
-Fill input (no mapping done) | 939 000 | 100  | reference if the mapping costs nothing
-Mapping by hand | 714 000 |  76  | simple code write by hand 
-Selma | 746 000 | 79 | Compile time code generation
-MapStruct | 727 000 | 77 | Compile time code generation
-JMapper | 637 000 | 68 | byte code manipulation (javassist)
-Orika | 93 400 | 9.9 | byte code generation (API java compiler)
-ModelMapper | 10 200 | 1.1 | introspection
-Dozer | 3 400 | 0.37 | introspection
+Framework | Performance (op/s) |  Comment
+--- | --- | ---
+Mapping by hand | 2 044 000 | simple code write by hand 
+MapStruct | 1 885 000 | Compile time code generation
+Selma | 1 836 000 | Compile time code generation
+JMapper | 1 822 000 | byte code manipulation (javassist)
+Orika | 110 000 | byte code generation (API java compiler)
+ModelMapper | 10 400 | introspection
+Dozer | 3 720 | introspection
 
 ## 05 toString
 
