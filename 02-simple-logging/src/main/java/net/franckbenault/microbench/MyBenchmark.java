@@ -2,6 +2,8 @@ package net.franckbenault.microbench;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.Level;
@@ -22,15 +24,11 @@ public class MyBenchmark {
 
 		@Setup(Level.Trial)
 		public void initList() {
-			String x = "a", y = "b", z = "c";
-
-			for (int i = 0; i < 100; i++) {
-				x += i;
-				y += i;
-				z += i;
-				Triplet t = new Triplet(x, y, z);
-				list.add(t);
-			}
+			int size =100;
+			list = IntStream.range(0,size)
+				.mapToObj( Triplet::new)
+				.collect(Collectors.toCollection(
+						() -> new ArrayList<Triplet>(size)));
 		}
 
 		List<Triplet> getTripletList() {

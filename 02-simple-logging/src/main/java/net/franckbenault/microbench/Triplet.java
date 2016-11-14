@@ -1,19 +1,30 @@
 package net.franckbenault.microbench;
 
-class Triplet
-{
-   String a;
-   String b;
-   String c;
+class Triplet {
+	@Override
+	public String toString() {
+		return "Triplet [a=" + a + ", b=" + b + ", c=" + c + "]";
+	}
 
-   Triplet(String a, String b, String c)
-   {
-    this.a = a;
-    this.b = b;
-    this.c = c;
-   }
+	private String a;
+	private String b;
+	private String c;
 
-   String getA(){ return a;}
-   String getB(){ return b;}
-   String getC(){ return c;}
+	public Triplet(int i) {
+		this.a = "a" + i;
+		this.b = "b" + i;
+		this.c = "c" + i;
+	}
+
+	public String getA() {
+		return a;
+	}
+
+	public String getB() {
+		return b;
+	}
+
+	public String getC() {
+		return c;
+	}
 }
