@@ -16,10 +16,9 @@ public class MyObjectWithStringBuilderTest {
 	
 	@Test
 	public void testToString() {
-		MyObject o = new MyObjectWithStringBuilder("a", "b", "c");
+		MyObject o = new MyObjectWithStringBuilder(1);
 		System.out.println(o.toString());
-		assertEquals(o.toString(), "MyObjectWithStringBuilder{att1=a, att2=b, att3=c}");
-
+		assertEquals(o.toString(), "MyObjectWithStringBuilder{att1=att1-1, att2=att2-1, att3=att3-1}");
 	}
 
 }

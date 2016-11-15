@@ -8,10 +8,10 @@ public class MyObjectWithObjectsToString extends MyObject {
 	public MyObjectWithObjectsToString() {
 	}
 	
-	public MyObjectWithObjectsToString(String att1, String att2, String att3) {
-		this.att1 = att1;
-		this.att2 = att2;
-		this.att3 = att3;
+	public MyObjectWithObjectsToString(int i) {
+		this.att1 = "att1-"+i;
+		this.att2 = "att2-"+i;
+		this.att3 = "att3-"+i;
 	}
 
 	

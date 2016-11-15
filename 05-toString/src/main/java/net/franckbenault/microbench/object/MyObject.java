@@ -9,10 +9,10 @@ public class MyObject {
 	public MyObject() {
 	}
 	
-	public MyObject(String att1, String att2, String att3) {
-		this.att1 = att1;
-		this.att2 = att2;
-		this.att3 = att3;
+	public MyObject(int i) {
+		this.att1 = "att1-"+i;
+		this.att2 = "att2-"+i;
+		this.att3 = "att3-"+i;
 	}
 	
 	@Override

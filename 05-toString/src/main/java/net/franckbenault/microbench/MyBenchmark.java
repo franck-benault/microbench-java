@@ -2,6 +2,8 @@ package net.franckbenault.microbench;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.Level;
@@ -32,14 +34,38 @@ public class MyBenchmark {
 		
 		@Setup(Level.Trial)
 		public void initList() {
-			for (int i = 0; i < 10; i++) {
-				list1.add(new MyObject("a" + i, "b" + i, "c" + i));
-				list2.add(new MyObjectWithObjectsToString("a" + i, "b" + i, "c" + i));
-				list3.add(new MyObjectWithStringBuilder("a" + i, "b" + i, "c" + i));
-				list4.add(new MyObjectWithGuava("a" + i, "b" + i, "c" + i));
-				list5.add(new MyObjectWithCommonsLang3Reflexion("a" + i, "b" + i, "c" + i));
-				list6.add(new MyObjectWithLombok("a" + i, "b" + i, "c" + i));
-			}
+			
+			int size =10;
+			list1 = IntStream.range(0,size)
+				.mapToObj( MyObject::new)
+				.collect(Collectors.toCollection(
+						() -> new ArrayList<MyObject>(size+1)));
+			list2 = IntStream.range(0,size)
+					.mapToObj( MyObjectWithObjectsToString::new)
+					.collect(Collectors.toCollection(
+							() -> new ArrayList<MyObjectWithObjectsToString>(size+1)));
+			list3 = IntStream.range(0,size)
+					.mapToObj( MyObjectWithStringBuilder::new)
+					.collect(Collectors.toCollection(
+							() -> new ArrayList<MyObjectWithStringBuilder>(size+1)));
+
+			list4 = IntStream.range(0,size)
+					.mapToObj( MyObjectWithGuava::new)
+					.collect(Collectors.toCollection(
+							() -> new ArrayList<MyObjectWithGuava>(size+1)));
+			
+			list5 = IntStream.range(0,size)
+					.mapToObj( MyObjectWithCommonsLang3Reflexion::new)
+					.collect(Collectors.toCollection(
+							() -> new ArrayList<MyObjectWithCommonsLang3Reflexion>(size+1)));
+			
+			list6 = IntStream.range(0,size)
+					.mapToObj( MyObjectWithLombok::new)
+					.collect(Collectors.toCollection(
+							() -> new ArrayList<MyObjectWithLombok>(size+1)));
+			
+			
+
 			list1.add(new MyObject());
 			list2.add(new MyObjectWithObjectsToString());
 			list3.add(new MyObjectWithStringBuilder());

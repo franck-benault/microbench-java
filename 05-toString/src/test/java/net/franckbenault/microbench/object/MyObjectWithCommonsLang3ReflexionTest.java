@@ -16,7 +16,7 @@ public class MyObjectWithCommonsLang3ReflexionTest {
 	
 	@Test
 	public void testToString() {
-		MyObject o = new MyObjectWithCommonsLang3Reflexion("a", "b", "c");
+		MyObject o = new MyObjectWithCommonsLang3Reflexion(1);
 		System.out.println(o.toString());
 		//assertEquals(o.toString(), "MyObjectWithStringBuilder{att1=a, att2=b, att3=c}");
 

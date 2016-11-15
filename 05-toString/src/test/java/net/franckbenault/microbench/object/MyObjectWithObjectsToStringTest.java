@@ -16,10 +16,9 @@ public class MyObjectWithObjectsToStringTest {
 	
 	@Test
 	public void testToString() {
-		MyObject o = new MyObjectWithObjectsToString("a", "b", "c");
+		MyObject o = new MyObjectWithObjectsToString(1);
 		System.out.println(o.toString());
-		assertEquals(o.toString(), "MyObjectWithObjectsToString{att1=a, att2=b, att3=c}");
-
+		assertEquals(o.toString(), "MyObjectWithObjectsToString{att1=att1-1, att2=att2-1, att3=att3-1}");
 	}
 
 }
