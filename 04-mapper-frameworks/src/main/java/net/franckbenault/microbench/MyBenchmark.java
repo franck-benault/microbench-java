@@ -2,6 +2,8 @@ package net.franckbenault.microbench;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.Level;
@@ -24,9 +26,6 @@ import net.franckbenault.microbench.mapper.impl.MapperWithJMapper;
 import net.franckbenault.microbench.mapper.impl.MapperWithOrika;
 import net.franckbenault.microbench.mapper.impl.MapperWithOrikaOptimized;
 import net.franckbenault.microbench.mapper.impl.MapperWithOrikaOptimized2;
-import net.franckbenault.microbench.source.Address;
-import net.franckbenault.microbench.source.Customer;
-import net.franckbenault.microbench.source.Name;
 import net.franckbenault.microbench.source.Order;
 
 public class MyBenchmark {
@@ -35,36 +34,6 @@ public class MyBenchmark {
 	@State(Scope.Benchmark)
 	public static class BenchmarkState {
 
-		private Address getAddress(int i) {
-			Address address = new Address();
-			address.setCity("City" + i);
-			address.setStreet("Street" + i);
-
-			return address;
-		}
-
-		private Customer getCustomer(int i) {
-			Customer customer = new Customer();
-			customer.setName(getName(i));
-
-			return customer;
-		}
-
-		private Name getName(int i) {
-			Name name = new Name();
-			name.setFirstName("firstName" + i);
-			name.setLastName("lastName" + i);
-
-			return name;
-		}
-
-		private Order getOrder(int i) {
-			Order order = new Order();
-			order.setBillingAddress(getAddress(i));
-			order.setCustomer(getCustomer(i));
-
-			return order;
-		}
 
 		private Order getOrderNull() {
 			Order order = new Order();
@@ -76,10 +45,13 @@ public class MyBenchmark {
 
 		@Setup(Level.Trial)
 		public void initList() {
+			
+			int size =10;
+			list = IntStream.range(0,size)
+					.mapToObj( Order::new)
+					.collect(Collectors.toCollection(
+							() -> new ArrayList<Order>(size+1)));
 
-			for (int i = 0; i < 10; i++) {
-				list.add(getOrder(i));
-			}
 			list.add(getOrderNull());
 		}
 	}

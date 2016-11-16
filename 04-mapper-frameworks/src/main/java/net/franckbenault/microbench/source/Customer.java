@@ -4,6 +4,14 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class Customer {
 	
+	public Customer() {
+
+	}
+	
+	public Customer(int i) {
+		this.setName(new Name(i));
+	}
+	
 	public void fillCustomer() {
 		name = new Name();
 	}

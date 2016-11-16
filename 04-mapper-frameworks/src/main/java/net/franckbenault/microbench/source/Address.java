@@ -4,6 +4,15 @@ public class Address {
 	  private String street;
 	  private String city;
 	  
+	public Address() {
+		
+	}
+	
+	public Address(int i) {
+		this.setCity("City" + i);
+		this.setStreet("Street" + i);
+	}
+	  
 	public String getStreet() {
 		return street;
 	}

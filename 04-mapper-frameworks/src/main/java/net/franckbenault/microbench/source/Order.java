@@ -6,6 +6,15 @@ public class Order {
 	private Customer customer;
 	private Address billingAddress;
 	
+	public Order(){
+		
+	}
+	
+	public Order(int i) {
+		this.setBillingAddress(new Address(i));
+		this.setCustomer(new Customer(i));
+	}
+	
 	public void fillOrder() {
 		customer = new Customer();
 		billingAddress = new Address();

@@ -21,13 +21,13 @@ You can see that the frameworks using introspection are less efficient.
 
 Framework | Performance (op/s) |  Comment
 --- | --- | ---
-Mapping by hand | 2 044 000 | simple code write by hand 
-MapStruct | 1 885 000 | Compile time code generation
-Selma | 1 836 000 | Compile time code generation
-JMapper | 1 822 000 | byte code manipulation (javassist)
-Orika | 110 000 | byte code generation (API java compiler)
-ModelMapper | 10 400 | introspection
-Dozer | 3 720 | introspection
+Mapping by hand | 1 874 000 | simple code write by hand 
+Selma | 1 804 000 | Compile time code generation
+MapStruct | 1 786 000 | Compile time code generation
+JMapper | 1 721 000 | byte code manipulation (javassist)
+Orika | 115 000 | byte code generation (API java compiler)
+ModelMapper | 9 870 | introspection
+Dozer | 3 660 | introspection
 
 ## 05 toString
 
