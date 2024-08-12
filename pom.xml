@@ -9,7 +9,7 @@
 	<properties>
 		<junit-quickcheck.version>0.6</junit-quickcheck.version>
 		<!-- JMH version to use with this project. -->
-		<jmh.version>1.13</jmh.version>
+		<jmh.version>1.37</jmh.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -62,7 +62,6 @@
 		</plugins>
 	</build>
 	<modules>
-		<module>01-simple-good-bad-example</module>
 		<module>02-simple-logging</module>
 		<module>03-cost-of-reflexion</module>
 		<module>04-mapper-frameworks</module>
